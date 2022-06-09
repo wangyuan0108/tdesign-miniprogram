@@ -1,49 +1,26 @@
 import { TdTransitionProps } from './type';
-import TComponent from '../common/component';
-import config from '../common/config';
+import { wxComponent, SuperComponent, ComponentsOptionsType } from '../common/src/index';
 import { classNames } from '../common/utils';
-
-const { prefix } = config;
-const name = `${prefix}-transition`;
+import props from './props';
 
 export type TransitionProps = TdTransitionProps;
 
-TComponent({
-  options: {
+@wxComponent()
+export default class Transition extends SuperComponent {
+  options: ComponentsOptionsType = {
     styleIsolation: 'shared',
-  },
-  properties: {
-    visible: {
-      type: Boolean,
-      observer(current, prev) {
-        if (this.inited && current !== prev) {
-          if (current) {
-            this.enter();
-          } else {
-            this.leave();
-          }
-        }
-      },
-    },
-    destroyOnHide: Boolean,
-    appear: Boolean,
-    customClass: String,
-    name: {
-      type: String,
-      value: name,
-    },
-    durations: {
-      type: Number,
-      optionalTypes: [Array],
-    },
-  },
-  data: {
+  };
+
+  properties = props;
+
+  data = {
     dataVisible: false,
     transitionClass: '',
     transitionDurations: 300,
     className: '',
-  },
-  lifetimes: {
+  };
+
+  lifetimes = {
     created() {
       this.status = '';
       this.transitionT = 0;
@@ -63,13 +40,20 @@ TComponent({
     detached() {
       clearTimeout(this.transitionT);
     },
-  },
-  observers: {
+  };
+
+  observers = {
+    visible(val) {
+      if (this.inited) {
+        this[val ? 'enter' : 'leave']();
+      }
+    },
     'customClass, transitionClass'() {
       this.setClass();
     },
-  },
-  methods: {
+  };
+
+  methods = {
     setClass() {
       const { customClass, transitionClass } = this.data;
       const className = classNames(customClass, transitionClass);
@@ -108,6 +92,7 @@ TComponent({
       this.setData({
         transitionClass: '',
       });
+      this.triggerEvent('entered');
     },
     leave() {
       const { name } = this.data;
@@ -147,5 +132,5 @@ TComponent({
         this.leaved();
       }
     },
-  },
-});
+  };
+}

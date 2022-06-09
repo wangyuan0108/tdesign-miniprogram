@@ -9,46 +9,47 @@ export interface TdTransitionProps {
    * @default false
    */
   appear?: {
-    type: BooleanConstructor,
-    value?: boolean,
+    type: BooleanConstructor;
+    value?: boolean;
   };
   /**
    * 自定义容器类名
    * @default ''
    */
   customClass?: {
-    type: StringConstructor,
-    value?: string,
+    type: StringConstructor;
+    value?: string;
   };
   /**
    * 隐藏时是否销毁内容
    * @default false
    */
-  destoryOnClose?: {
-    type: BooleanConstructor,
-    value?: boolean,
+  destroyOnHide?: {
+    type: BooleanConstructor;
+    value?: boolean;
   };
   /**
    * 指定过渡时间
    */
-  duration?: {
-    type: NumberConstructor,
-    value?: number,
+  durations?: {
+    type: NumberConstructor;
+    value?: number;
+    optionalTypes: Array<any>;
   };
   /**
    * 过渡类名
    * @default 't-transition'
    */
   name?: {
-    type: StringConstructor,
-    value?: string,
+    type: StringConstructor;
+    value?: string;
   };
   /**
    * 是否显示
    * @default false
    */
   visible?: {
-    type: BooleanConstructor,
-    value?: boolean,
+    type: BooleanConstructor;
+    value?: boolean;
   };
-};
+}

@@ -17,13 +17,14 @@ const props: TdTransitionProps = {
     value: '',
   },
   /** 隐藏时是否销毁内容 */
-  destoryOnClose: {
+  destroyOnHide: {
     type: Boolean,
     value: false,
   },
   /** 指定过渡时间 */
-  duration: {
+  durations: {
     type: Number,
+    optionalTypes: [Array],
   },
   /** 过渡类名 */
   name: {
