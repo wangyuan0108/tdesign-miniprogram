@@ -75,4 +75,8 @@ export default class Popup extends SuperComponent {
   }
 
   preventEvent() {}
+
+  handleTransitionEntered() {
+    this.triggerEvent('transition-end');
+  }
 }

@@ -95,3 +95,4 @@ isComponent: true
 名称 | 参数 | 描述
 -- | -- | --
 visible-change | `(visible: boolean, trigger: PopupSource) ` | 当浮层隐藏或显示时触发。[详细类型定义](https://github.com/Tencent/tdesign-miniprogram/tree/develop/src/popup/type.ts)。<br/>`type PopupSource = 'close-btn' | 'overlay'`<br/>
+transition-end | - | 当浮层的动画结束之后触发 `v0.13.1`

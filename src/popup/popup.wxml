@@ -6,6 +6,7 @@
   durations="{{dataTransitionProps.durations}}"
   destoryOnHide="{{destroyOnClose}}"
   catch:touchmove="{{preventScrollThrough ? 'preventEvent' : ''}}"
+  bind:entered="handleTransitionEntered"
 >
   <view
     class="{{classPrefix}}__overlay {{prefix}}-class-overlay"
